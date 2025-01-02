@@ -1,10 +1,629 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" class="dark">
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+  <title>Церковные Услуги Онлайн</title>
+  <style>
+    .parallax {
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 500px;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+    }
+    .stat-card {
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: scale(1.05);
+      background-color: rgba(45, 55, 72, 0.8);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-out;
+    }
+  </style>
 </head>
-<body>
-$END$
+<body class="bg-gray-900 text-gray-100">
+<!-- Header -->
+<header class="bg-gray-800/90 backdrop-blur-sm shadow-xl fixed w-full z-50">
+  <nav class="container mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="text-2xl font-bold text-yellow-500 hover:text-yellow-400 transition-colors">Храм Online</div>
+      <div class="space-x-6">
+        <a href="#services" class="text-gray-300 hover:text-yellow-500 transition-colors">Услуги</a>
+        <a href="#about" class="text-gray-300 hover:text-yellow-500 transition-colors">О нас</a>
+        <a href="#blog" class="text-gray-300 hover:text-yellow-500 transition-colors">Блог</a>
+        <a href="#contact" class="text-gray-300 hover:text-yellow-500 transition-colors">Контакты</a>
+        <a href="/admin" class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Админ</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="relative h-[500px] pt-16">
+  <img src="/Leonardo_Lightning_XL_church_modern_3.jpg" alt="Church" class="w-full h-full object-cover" />
+  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent">
+    <div class="container mx-auto px-6 h-full flex items-center">
+      <div class="max-w-2xl fade-in">
+        <h1 class="text-6xl font-bold text-white mb-6">Добро пожаловать в наш храм</h1>
+        <p class="text-xl text-gray-200 mb-8">Духовное общение онлайн в любое время</p>
+        <a href="#services" class="inline-block bg-yellow-500 text-gray-900 px-8 py-3 rounded-lg hover:bg-yellow-400 transition-colors text-lg font-semibold">Наши услуги</a>
+      </div>
+    </div>
+  </div>
+</section><br><br>
+
+<!-- Statistics Section -->
+<section class="py-20 bg-gray-800"><br><br>
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="stat-card bg-gray-700 p-8 rounded-xl text-center">
+        <h3 class="text-5xl font-bold text-yellow-500 mb-4" id="clientCount" data-target="5000">0</h3>
+        <p class="text-gray-300 text-lg">Клиентов</p>
+      </div>
+      <div class="stat-card bg-gray-700 p-8 rounded-xl text-center">
+        <h3 class="text-5xl font-bold text-yellow-500 mb-4" id="confessionCount" data-target="1200">0</h3>
+        <p class="text-gray-300 text-lg">Исповедей онлайн</p>
+      </div>
+      <div class="stat-card bg-gray-700 p-8 rounded-xl text-center">
+        <h3 class="text-5xl font-bold text-yellow-500 mb-4" id="prayerCount" data-target="10000">0</h3>
+        <p class="text-gray-300 text-lg">Молитв</p>
+      </div>
+      <div class="stat-card bg-gray-700 p-8 rounded-xl text-center">
+        <h3 class="text-5xl font-bold text-yellow-500 mb-4" id="donationCount" data-target="3000">0</h3>
+        <p class="text-gray-300 text-lg">Пожертвований</p>
+      </div>
+    </div>
+  </div><br><br>
+</section><br><br><br>
+
+<section class="py-20 bg-gray-900">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Текстовый контент -->
+      <div class="space-y-8">
+        <h2 class="text-4xl font-bold text-yellow-500 mb-8">КЛЮЧЕВЫЕ ПРЕИМУЩЕСТВА «Е ЦЕРКВА»</h2>
+
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-yellow-500 mb-2">Удобство и доступность</h3>
+              <p class="text-gray-300">Проводите традиционные церковные таинства в любое время и из любой точки планеты. Больше нет необходимости искать украинскую церковь за границей, все, что нужно, — доступ к интернету.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-yellow-500 mb-2">Сохранение традиций</h3>
+              <p class="text-gray-300">Мы чтим украинские православные традиции и обряды, чтобы вы могли почувствовать часть Украины, даже находясь далеко от украинской церкви.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-yellow-500 mb-2">Возможность исполнить свой духовный долг</h3>
+              <p class="text-gray-300">Благодаря «Е церковь» вы можете на расстоянии от дома позаботиться о духовном благополучии своих близких и усопших, заказав за них молитвы или панихиду.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2 2 0 00-2-2h-2" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-semibold text-yellow-500 mb-2">Христианский блог</h3>
+              <p class="text-gray-300">На «Е церковь» есть блог полезных материалов для православных христиан. Также подписывайтесь на Телеграмм-канал "Е церковь" и вы всегда будете в курсе важнейших православных праздников.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Изображение -->
+      <div class="relative">
+        <img src="/Leonardo_Lightning_XL_church_modern_31.jpg" alt="Church Interior" class="rounded-xl shadow-2xl"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 to-transparent rounded-xl"></div>
+      </div>
+    </div>
+  </div>
+</section><br><br><br>
+
+<!-- Services Section -->
+
+<section class="py-32 bg-gray-800" id="services">
+  <div class="container mx-auto px-6"><br><br>
+    <h2 class="text-4xl font-bold text-yellow-500 mb-24 text-center">Наши Услуги</h2><br><br><br>
+    <div class="grid grid-cols-1 md:grid-cols-4 xl:gap-24">
+      <!-- Первый ряд -->
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 1" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Требы</h3>
+          <p class="text-gray-300 mb-6">Молебны, панихиды, сорокоусты онлайн</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 2" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Таинства</h3>
+          <p class="text-gray-300 mb-6">Исповедь и духовные беседы онлайн</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 3" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Пожертвования</h3>
+          <p class="text-gray-300 mb-6">Помощь храму и проекты</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 4" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Обучение</h3>
+          <p class="text-gray-300 mb-6">Курсы и духовное образование</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+
+      <!-- Второй ряд -->
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 5" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Консультации</h3>
+          <p class="text-gray-300 mb-6">Личные беседы со священником</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 6" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Молитвы</h3>
+          <p class="text-gray-300 mb-6">Заказ молитв о здравии</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 7" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Записки</h3>
+          <p class="text-gray-300 mb-6">Подача записок онлайн</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+
+      <div class="service-card bg-gray-700 rounded-xl overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_modern_1.jpg" alt="Service 8" class="w-full h-56 object-cover"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <h3 class="text-2xl font-semibold text-yellow-500 mb-4">Свечи</h3>
+          <p class="text-gray-300 mb-6">Заказ свечей онлайн</p>
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">Подробнее</a>
+        </div>
+      </div>
+    </div><br><br>
+
+    <!-- Кнопка "Все услуги" -->
+    <div class="text-center mt-16">
+      <a href="/services" class="inline-block bg-transparent border-2 border-yellow-500 text-yellow-500 px-8 py-3 rounded-lg hover:bg-yellow-500 hover:text-gray-900 transition-all duration-300 text-lg font-semibold">
+        Смотреть все услуги
+      </a>
+    </div><br><br>
+  </div>
+</section>
+
+
+<!-- Parallax Section -->
+<section class="parallax relative" style="background-image: url('/home-img.svg');" id="about">
+  <div class="absolute inset-0 bg-black/60 flex items-center justify-center">
+    <div class="text-center max-w-4xl px-6">
+      <h2 class="text-5xl font-bold mb-6 text-yellow-500">Наша миссия</h2>
+      <p class="text-xl text-gray-200 leading-relaxed">Быть ближе к каждому верующему, предоставляя доступ к духовной поддержке и таинствам в современном цифровом мире</p>
+    </div>
+  </div>
+</section><br><br>
+
+
+<!-- Blog Section -->
+<section class="py-20 bg-gray-900" id="blog">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-yellow-500 mb-16 text-center">Блог</h2><br><br></br>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <article class="blog-card bg-gray-800 rounded-lg overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_3.jpg" alt="Blog 1" class="w-full h-48 object-cover"/>
+          <div class="absolute top-4 left-4 bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-sm font-medium">Новости</div>
+        </div>
+        <div class="p-6">
+          <div class="text-yellow-500 text-sm mb-2">12 января 2024</div>
+          <h3 class="text-xl font-semibold mb-3 hover:text-yellow-500 transition-colors">Пасхальные традиции в современном мире</h3>
+          <p class="text-gray-400 mb-4">Как сохранить и передать традиции в цифровую эпоху...</p>
+          <a href="#" class="inline-flex items-center text-yellow-500 hover:text-yellow-400">
+            Читать далее
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="blog-card bg-gray-800 rounded-lg overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_3.jpg" alt="Blog 2" class="w-full h-48 object-cover"/>
+          <div class="absolute top-4 left-4 bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-sm font-medium">Духовность</div>
+        </div>
+        <div class="p-6">
+          <div class="text-yellow-500 text-sm mb-2">10 января 2024</div>
+          <h3 class="text-xl font-semibold mb-3 hover:text-yellow-500 transition-colors">Духовное развитие онлайн</h3>
+          <p class="text-gray-400 mb-4">Возможности и особенности духовного роста в цифровом пространстве...</p>
+          <a href="#" class="inline-flex items-center text-yellow-500 hover:text-yellow-400">
+            Читать далее
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="blog-card bg-gray-800 rounded-lg overflow-hidden transition-all duration-300">
+        <div class="relative">
+          <img src="/Leonardo_Lightning_XL_church_3.jpg" alt="Blog 3" class="w-full h-48 object-cover"/>
+          <div class="absolute top-4 left-4 bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-sm font-medium">Практика</div>
+        </div>
+        <div class="p-6">
+          <div class="text-yellow-500 text-sm mb-2">8 января 2024</div>
+          <h3 class="text-xl font-semibold mb-3 hover:text-yellow-500 transition-colors">Молитва в современном мире</h3>
+          <p class="text-gray-400 mb-4">Как сохранить глубину молитвенного опыта в быстром ритме жизни...</p>
+          <a href="#" class="inline-flex items-center text-yellow-500 hover:text-yellow-400">
+            Читать далее
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section><br><br><br>
+
+<section class="py-20 bg-gray-900">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-yellow-500 mb-16 text-center">Расписание служб</h2><br><br><br>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Календарь -->
+      <div class="bg-gray-800 p-8 rounded-xl">
+        <div id="calendar" class="text-gray-300">
+          <div class="flex justify-between items-center mb-6">
+            <button class="text-yellow-500 hover:text-yellow-400">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <h3 class="text-xl font-semibold">Январь 2024</h3>
+            <button class="text-yellow-500 hover:text-yellow-400">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+          <div class="grid grid-cols-7 gap-2 mb-4">
+            <div class="text-center text-gray-500">Пн</div>
+            <div class="text-center text-gray-500">Вт</div>
+            <div class="text-center text-gray-500">Ср</div>
+            <div class="text-center text-gray-500">Чт</div>
+            <div class="text-center text-gray-500">Пт</div>
+            <div class="text-center text-gray-500">Сб</div>
+            <div class="text-center text-gray-500">Вс</div>
+          </div>
+          <div class="grid grid-cols-7 gap-2">
+            <!-- Дни календаря -->
+            <div class="text-center p-2 hover:bg-gray-700 rounded cursor-pointer">1</div>
+            <div class="text-center p-2 hover:bg-gray-700 rounded cursor-pointer">2</div>
+            <!-- ... остальные дни ... -->
+            <div class="text-center p-2 bg-yellow-500 text-gray-900 rounded cursor-pointer">15</div>
+            <!-- ... остальные дни ... -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Ближайшие службы -->
+      <div class="bg-gray-800 p-8 rounded-xl">
+        <h3 class="text-2xl font-semibold text-yellow-500 mb-6">Ближайшие службы</h3>
+        <div class="space-y-6">
+          <div class="service-item flex items-center justify-between border-b border-gray-700 pb-4 hover:bg-gray-700 p-4 rounded-lg transition-all">
+            <div>
+              <h4 class="text-lg font-medium text-gray-200">Литургия</h4>
+              <p class="text-gray-400">10:00 - 12:00</p>
+              <p class="text-sm text-gray-500 mt-1">Отец Михаил</p>
+            </div>
+            <div class="text-right">
+              <span class="text-yellow-500 block">20 января</span>
+              <span class="text-sm text-gray-400">Суббота</span>
+            </div>
+          </div>
+
+          <div class="service-item flex items-center justify-between border-b border-gray-700 pb-4 hover:bg-gray-700 p-4 rounded-lg transition-all">
+            <div>
+              <h4 class="text-lg font-medium text-gray-200">Вечерня</h4>
+              <p class="text-gray-400">17:00 - 18:30</p>
+              <p class="text-sm text-gray-500 mt-1">Отец Александр</p>
+            </div>
+            <div class="text-right">
+              <span class="text-yellow-500 block">21 января</span>
+              <span class="text-sm text-gray-400">Воскресенье</span>
+            </div>
+          </div>
+
+          <div class="service-item flex items-center justify-between border-b border-gray-700 pb-4 hover:bg-gray-700 p-4 rounded-lg transition-all">
+            <div>
+              <h4 class="text-lg font-medium text-gray-200">Молебен</h4>
+              <p class="text-gray-400">09:00 - 10:00</p>
+              <p class="text-sm text-gray-500 mt-1">Отец Николай</p>
+            </div>
+            <div class="text-right">
+              <span class="text-yellow-500 block">22 января</span>
+              <span class="text-sm text-gray-400">Понедельник</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a href="#" class="inline-block bg-yellow-500 text-gray-900 px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors">
+            Показать все службы
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><br><br><br></br>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const calendar = document.getElementById('calendar');
+    const monthDisplay = calendar.querySelector('h3');
+    const prevMonth = calendar.querySelector('button:first-of-type');
+    const nextMonth = calendar.querySelector('button:last-of-type');
+
+    let currentDate = new Date();
+
+    function updateCalendar() {
+      // Здесь будет логика обновления календаря
+      // После реализации бэкенда, здесь будем получать данные о службах
+    }
+
+    prevMonth.addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      updateCalendar();
+    });
+
+    nextMonth.addEventListener('click', () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      updateCalendar();
+    });
+
+    updateCalendar();
+  });
+</script>
+
+<section class="py-20 bg-gray-800" id="contact">
+  <div class="container mx-auto px-6">
+    <div class="max-w-2xl mx-auto text-center mb-12"><br><br>
+      <h2 class="text-4xl font-bold text-yellow-500 mb-4">Присоединяйтесь к Православному сообществу</h2>
+      <p class="text-gray-300">Оставьте запрос, и мы свяжемся с вами</p>
+    </div>
+
+    <div class="max-w-xl mx-auto bg-gray-700 rounded-xl p-8">
+      <form class="space-y-6" id="contactForm" action="/contact" method="post">
+        <!-- Имя и почта -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Имя</label>
+            <input type="text" name="name"
+                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300"
+                   required>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+            <input type="email" name="email"
+                   class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300"
+                   required>
+          </div>
+        </div>
+
+        <!-- Телефон -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Телефон</label>
+          <input type="tel" name="phoneNumber"
+                 class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300"
+                 required>
+        </div>
+
+        <!-- Сообщение -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Сообщение</label>
+          <textarea name="message" rows="4"
+                    class="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300 resize-none"
+                    required></textarea>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors text-lg font-semibold">
+          Отправить
+        </button>
+      </form>
+    </div><br><br></br>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 border-t border-gray-800">
+  <div class="container mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="text-lg font-semibold text-yellow-500 mb-6">О нас</h4>
+        <p class="text-gray-400 mb-4">Мы стремимся сделать духовную поддержку доступной каждому верующему через современные технологии.</p>
+        <div class="flex space-x-4 mt-6">
+          <a href="#" class="text-gray-400 hover:text-yellow-500">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/></svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-500">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-1.35c-.538 0-.65.221-.65.778v1.222h2l-.209 2h-1.791v7h-3v-7h-2v-2h2v-2.308c0-1.769.931-2.692 3.029-2.692h1.971v3z"/></svg>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-yellow-500">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold text-yellow-500 mb-6">Контакты</h4>
+        <ul class="space-y-4">
+          <li>
+            <a href="tel:+7XXXXXXXXXX" class="text-gray-400 hover:text-yellow-500 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              +7 (XXX) XXX-XX-XX
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@church-online.ru" class="text-gray-400 hover:text-yellow-500 flex items-center">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              info@church-online.ru
+            </a>
+          </li>
+          <li class="text-gray-400 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            г. Город, ул. Улица, д. X
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold text-yellow-500 mb-6">Быстрые ссылки</h4>
+        <ul class="space-y-3">
+          <li><a href="#" class="text-gray-400 hover:text-yellow-500">Главная</a></li>
+          <li><a href="#services" class="text-gray-400 hover:text-yellow-500">Услуги</a></li>
+          <li><a href="#about" class="text-gray-400 hover:text-yellow-500">О нас</a></li>
+          <li><a href="#blog" class="text-gray-400 hover:text-yellow-500">Блог</a></li>
+          <li><a href="#contact" class="text-gray-400 hover:text-yellow-500">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold text-yellow-500 mb-6">Подписка на новости</h4>
+        <p class="text-gray-400 mb-4">Получайте обновления о новых статьях и событиях</p>
+        <form class="space-y-4">
+          <div>
+            <input type="email" placeholder="Ваш email" class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+          </div>
+          <button type="submit" class="w-full bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors">
+            Подписаться
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+      <p>&copy; 2024 Храм Online. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Animated counter function
+  function animateCounter(element, target) {
+    let current = 0;
+    const duration = 3000; // Длительность анимации в мс (3 секунды)
+    const increment = target / (duration / 50); // Меньше инкремент для более плавной анимации
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        clearInterval(timer);
+        current = target;
+      }
+      element.textContent = Math.floor(current);
+    }, 50); // Больший интервал для замедления
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Добавляем Intersection Observer для запуска анимации при появлении в видимой области
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target, parseInt(entry.target.dataset.target));
+          observer.unobserve(entry.target);
+        }
+      });
+    });
+
+    // Наблюдаем за счетчиками
+    document.querySelectorAll('[id$="Count"]').forEach(counter => {
+      observer.observe(counter);
+    });
+  });
+</script>
 </body>
 </html>
