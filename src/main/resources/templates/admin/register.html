@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <title>Регистрация администратора</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-100">
+<div class="min-h-screen flex items-center justify-center">
+  <div class="max-w-md w-full space-y-8 p-10 bg-gray-800 rounded-xl">
+    <div>
+      <h2 class="text-center text-3xl font-bold text-yellow-500">Регистрация администратора</h2>
+      <p class="mt-2 text-center text-sm text-gray-400">
+        Создайте учетную запись администратора
+      </p>
+    </div>
+
+    <form class="mt-8 space-y-6" action="/admin/register" method="POST">
+      <div class="space-y-4">
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-300">
+            Имя пользователя
+          </label>
+          <div class="mt-1 relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="lucide-user text-gray-400"></i>
+            </div>
+            <input id="username" name="username" type="text" required
+                   class="pl-10 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+          </div>
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-300">
+            Пароль
+          </label>
+          <div class="mt-1 relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="lucide-lock text-gray-400"></i>
+            </div>
+            <input id="password" name="password" type="password" required
+                   class="pl-10 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+          </div>
+        </div>
+
+        <div>
+          <label for="confirmPassword" class="block text-sm font-medium text-gray-300">
+            Подтвердите пароль
+          </label>
+          <div class="mt-1 relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="lucide-lock text-gray-400"></i>
+            </div>
+            <input id="confirmPassword" name="confirmPassword" type="password" required
+                   class="pl-10 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+          </div>
+        </div>
+      </div>
+
+      <div th:if="${error}" class="text-red-500 text-center text-sm">
+        <p th:text="${error}"></p>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors text-lg font-semibold flex items-center justify-center">
+        <i class="lucide-user-plus mr-2"></i>
+        Зарегистрироваться
+      </button>
+
+      <div class="text-center">
+        <a href="/admin/login" class="text-yellow-500 hover:text-yellow-400 text-sm">
+          Уже есть аккаунт? Войти
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>

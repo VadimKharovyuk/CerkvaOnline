@@ -38,17 +38,50 @@ public class AdminController {
         }
     }
 
-    @GetMapping("/dashboard")
-    public String dashboard(HttpSession session) {
+
+    @GetMapping("/register")
+    public String showRegisterForm(HttpSession session) {
+        // Проверяем, есть ли уже админ в системе
         if (session.getAttribute("ADMIN_ID") == null) {
-            return "redirect:/admin/login";
+            return "admin/register";
         }
-        return "admin/dashboard";
+        return "redirect:/admin/dashboard";
+    }
+
+    @PostMapping("/register")
+    public String registerAdmin(@RequestParam String username,
+                                @RequestParam String password,
+                                @RequestParam String confirmPassword,
+                                Model model) {
+        try {
+            if (!password.equals(confirmPassword)) {
+                model.addAttribute("error", "Пароли не совпадают");
+                return "admin/register";
+            }
+
+            Admin admin = new Admin();
+            admin.setUsername(username);
+            admin.setPassword(password); // В реальном проекте нужно хешировать пароль
+
+            adminService.registerAdmin(admin);
+            return "redirect:/admin/login";
+        } catch (Exception e) {
+            model.addAttribute("error", "Ошибка при регистрации: " + e.getMessage());
+            return "admin/register";
+        }
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/admin/login";
+    }
+
+    @GetMapping("/dashboard")
+    public String dashboard(HttpSession session) {
+        if (session.getAttribute("ADMIN_ID") == null) {
+            return "redirect:/admin/login";
+        }
+        return "admin/dashboard";
     }
 }

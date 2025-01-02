@@ -1,10 +1,189 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title>Панель администратора</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-900 min-h-screen">
+<!-- Навигация -->
+<nav class="fixed top-0 z-50 w-full bg-gray-800 border-b border-gray-700">
+  <div class="px-3 py-3 lg:px-5 lg:pl-3">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <span class="text-2xl font-bold text-yellow-500">Админ панель</span>
+      </div>
+      <div class="flex items-center gap-4">
+                   <span class="text-gray-300">
+                       <i class="lucide-user mr-2"></i>
+                       <span th:text="${session.ADMIN_NAME}"></span>
+                   </span>
+        <a href="/admin/logout" class="flex items-center text-red-500 hover:text-red-400 transition-colors">
+          <i class="lucide-log-out mr-2"></i>
+          Выйти
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
 
+<!-- Основной контент -->
+<div class="p-4 sm:ml-64 pt-20">
+  <!-- Статистика -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+    <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1">
+      <div class="flex items-center">
+        <div class="inline-flex flex-shrink-0 justify-center items-center w-12 h-12 rounded-lg bg-yellow-500/20 text-yellow-500 mr-4">
+          <i class="lucide-users text-2xl"></i>
+        </div>
+        <div>
+          <p class="text-gray-400 text-sm">Пользователей</p>
+          <h3 class="text-2xl font-bold text-white">150</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1">
+      <div class="flex items-center">
+        <div class="inline-flex flex-shrink-0 justify-center items-center w-12 h-12 rounded-lg bg-green-500/20 text-green-500 mr-4">
+          <i class="lucide-shopping-cart text-2xl"></i>
+        </div>
+        <div>
+          <p class="text-gray-400 text-sm">Новых заказов</p>
+          <h3 class="text-2xl font-bold text-white">25</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1">
+      <div class="flex items-center">
+        <div class="inline-flex flex-shrink-0 justify-center items-center w-12 h-12 rounded-lg bg-blue-500/20 text-blue-500 mr-4">
+          <i class="lucide-dollar-sign text-2xl"></i>
+        </div>
+        <div>
+          <p class="text-gray-400 text-sm">Доход</p>
+          <h3 class="text-2xl font-bold text-white">₴15,000</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-800 rounded-xl p-6 hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1">
+      <div class="flex items-center">
+        <div class="inline-flex flex-shrink-0 justify-center items-center w-12 h-12 rounded-lg bg-purple-500/20 text-purple-500 mr-4">
+          <i class="lucide-package text-2xl"></i>
+        </div>
+        <div>
+          <p class="text-gray-400 text-sm">Товаров</p>
+          <h3 class="text-2xl font-bold text-white">45</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Таблицы -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Последние заказы -->
+    <div class="bg-gray-800 rounded-xl p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold text-yellow-500">Последние заказы</h2>
+        <a href="#" class="text-yellow-500 hover:text-yellow-400 transition-colors flex items-center">
+          Все заказы
+          <i class="lucide-chevron-right ml-1"></i>
+        </a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-400">
+          <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+          <tr>
+            <th scope="col" class="px-4 py-3">Заказ</th>
+            <th scope="col" class="px-4 py-3">Клиент</th>
+            <th scope="col" class="px-4 py-3">Статус</th>
+            <th scope="col" class="px-4 py-3">Сумма</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="border-b border-gray-700 hover:bg-gray-700">
+            <td class="px-4 py-3">#1234</td>
+            <td class="px-4 py-3">Иван Петров</td>
+            <td class="px-4 py-3">
+              <span class="bg-green-900 text-green-300 text-xs font-medium px-2.5 py-0.5 rounded">Оплачен</span>
+            </td>
+            <td class="px-4 py-3">₴1,200</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Последние пользователи -->
+    <div class="bg-gray-800 rounded-xl p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-bold text-yellow-500">Последние пользователи</h2>
+        <a href="#" class="text-yellow-500 hover:text-yellow-400 transition-colors flex items-center">
+          Все пользователи
+          <i class="lucide-chevron-right ml-1"></i>
+        </a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-400">
+          <thead class="text-xs uppercase bg-gray-700 text-gray-400">
+          <tr>
+            <th scope="col" class="px-4 py-3">Имя</th>
+            <th scope="col" class="px-4 py-3">Email</th>
+            <th scope="col" class="px-4 py-3">Дата</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="border-b border-gray-700 hover:bg-gray-700">
+            <td class="px-4 py-3">Анна Сидорова</td>
+            <td class="px-4 py-3">anna@example.com</td>
+            <td class="px-4 py-3">01.01.2024</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Быстрые действия -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+    <a href="#" class="p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1 group">
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-yellow-500/20 text-yellow-500 mb-4 group-hover:bg-yellow-500 group-hover:text-gray-900 transition-all">
+          <i class="lucide-user-plus text-2xl"></i>
+        </div>
+        <span class="text-gray-300 text-sm text-center">Добавить пользователя</span>
+      </div>
+    </a>
+
+    <a href="#" class="p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1 group">
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-green-500/20 text-green-500 mb-4 group-hover:bg-green-500 group-hover:text-gray-900 transition-all">
+          <i class="lucide-file-plus text-2xl"></i>
+        </div>
+        <span class="text-gray-300 text-sm text-center">Создать заказ</span>
+      </div>
+    </a>
+
+    <a href="#" class="p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1 group">
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-blue-500/20 text-blue-500 mb-4 group-hover:bg-blue-500 group-hover:text-gray-900 transition-all">
+          <i class="lucide-package-plus text-2xl"></i>
+        </div>
+        <span class="text-gray-300 text-sm text-center">Добавить товар</span>
+      </div>
+    </a>
+
+    <a href="#" class="p-6 bg-gray-800 rounded-xl hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1 group">
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-purple-500/20 text-purple-500 mb-4 group-hover:bg-purple-500 group-hover:text-gray-900 transition-all">
+          <i class="lucide-settings text-2xl"></i>
+        </div>
+        <span class="text-gray-300 text-sm text-center">Настройки</span>
+      </div>
+    </a>
+  </div>
+</div>
 </body>
 </html>
