@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 
 public class HomePage {
-        private final ContactService contactService;
+    private final ContactService contactService;
 
-        @Autowired
-        public HomePage(ContactService contactService) {
-            this.contactService = contactService;
-        }
+    @Autowired
+    public HomePage(ContactService contactService) {
+        this.contactService = contactService;
+    }
 
-        @GetMapping()
-        public String homePage(Model model) {
-            model.addAttribute("contactRequest", new ContactRequest());
-            return "home";
-        }
+    @GetMapping()
+    public String homePage(Model model) {
+        model.addAttribute("contactRequest", new ContactRequest());
+        return "home";
+    }
+
     @PostMapping("/contact")
     public String saveContact(@Valid @ModelAttribute ContactRequest contact,
                               BindingResult bindingResult,

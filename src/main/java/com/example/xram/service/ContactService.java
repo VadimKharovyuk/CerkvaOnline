@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -15,5 +16,8 @@ public class ContactService {
     public ContactRequest save(ContactRequest contactRequest) {
         contactRequest.setCreatedAt(LocalDateTime.now());
         return repository.save(contactRequest);
+    }
+    public List<ContactRequest> findAll() {
+        return repository.findAll();
     }
 }
