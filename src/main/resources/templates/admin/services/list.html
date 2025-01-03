@@ -35,13 +35,14 @@
             <tr th:each="service : ${services}" class="text-gray-300 hover:bg-gray-700 transition-colors">
                 <td class="px-6 py-4">
                     <a th:href="@{/admin/services/{id}(id=${service.id})}" class="block hover:opacity-75 transition-opacity">
-                    <img th:if="${service.imageData != null}"
-                         th:src="@{/admin/services/{id}/image(id=${service.id})}"
-                         class="w-16 h-16 object-cover rounded-lg"/>
-                    <div th:unless="${service.imageData != null}"
-                         class="w-16 h-16 bg-gray-700 rounded-lg flex items-center justify-center">
-                        <i class="lucide-image text-gray-500"></i>
-                    </div>
+                        <img th:if="${service.imageData != null}"
+                             th:src="@{/admin/services/{id}/image(id=${service.id})}"
+                             class="w-16 h-16 object-cover rounded-lg"/>
+                        <div th:unless="${service.imageData != null}"
+                             class="w-16 h-16 bg-gray-700 rounded-lg flex items-center justify-center">
+                            <i class="lucide-image text-gray-500"></i>
+                        </div>
+                    </a> <!-- Закрываем тег здесь -->
                 </td>
                 <td class="px-6 py-4">
                     <span th:text="${service.name}" class="font-medium"></span>
