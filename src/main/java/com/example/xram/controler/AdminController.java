@@ -38,14 +38,23 @@ public class AdminController {
         }
     }
 
+    // Для первичной регистрации админа
+    @GetMapping("/initial")
+    public String initialSetup() {
+        // Проверяем, есть ли уже хоть один админ в системе
+        if (adminService.hasAnyAdmin()) {
+            return "redirect:/admin/login";
+        }
+        return "admin/register";
+    }
+
 
     @GetMapping("/register")
     public String showRegisterForm(HttpSession session) {
-        // Проверяем, есть ли уже админ в системе
-        if (session.getAttribute("ADMIN_ID") == null) {
+        if (session.getAttribute("ADMIN_ID") != null) {
             return "admin/register";
         }
-        return "redirect:/admin/dashboard";
+        return "redirect:/admin/login";
     }
 
     @PostMapping("/register")
@@ -61,7 +70,7 @@ public class AdminController {
 
             Admin admin = new Admin();
             admin.setUsername(username);
-            admin.setPassword(password); // В реальном проекте нужно хешировать пароль
+            admin.setPassword(password);
 
             adminService.registerAdmin(admin);
             return "redirect:/admin/login";

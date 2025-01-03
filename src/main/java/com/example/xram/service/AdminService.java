@@ -27,4 +27,7 @@ public class AdminService {
         // В реальном проекте здесь нужно хешировать пароль
         return adminRepository.save(admin);
     }
+    public boolean hasAnyAdmin() {
+        return adminRepository.count() > 0;
+    }
 }
