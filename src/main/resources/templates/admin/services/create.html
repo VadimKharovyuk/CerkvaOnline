@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <title>Создание новой услуги</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-900">
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+      <h2 class="text-2xl font-bold text-yellow-500 mb-6">Создание новой услуги</h2>
+
+      <form th:action="@{/admin/services}" method="post" enctype="multipart/form-data" class="space-y-6">
+        <!-- Название -->
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-300">Название услуги</label>
+          <input type="text" id="name" name="name" required
+                 class="mt-1 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+        </div>
+
+        <!-- Краткое описание -->
+        <div>
+          <label for="shortDescription" class="block text-sm font-medium text-gray-300">Краткое описание</label>
+          <textarea id="shortDescription" name="shortDescription" rows="3" required
+                    class="mt-1 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300"></textarea>
+        </div>
+
+        <!-- Полное описание -->
+        <div>
+          <label for="fullDescription" class="block text-sm font-medium text-gray-300">Полное описание</label>
+          <textarea id="fullDescription" name="fullDescription" rows="6" required
+                    class="mt-1 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300"></textarea>
+        </div>
+
+        <!-- Загрузка изображения -->
+        <div>
+          <label for="image" class="block text-sm font-medium text-gray-300">Изображение</label>
+          <input type="file" id="image" name="image" accept="image/*" required
+                 class="mt-1 w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+        </div>
+
+        <!-- Кнопки -->
+        <div class="flex justify-end space-x-4">
+          <a href="/admin/services"
+             class="px-4 py-2 bg-gray-600 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors">
+            Отмена
+          </a>
+          <button type="submit"
+                  class="px-4 py-2 bg-yellow-500 text-gray-900 rounded-lg hover:bg-yellow-400 transition-colors">
+            Создать услугу
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

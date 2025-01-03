@@ -44,7 +44,7 @@ public class AdminController {
     }
 
     // Для первичной регистрации админа
-    @GetMapping("/initial")
+    @GetMapping("/xpam")
     public String initialSetup() {
         // Проверяем, есть ли уже хоть один админ в системе
         if (adminService.hasAnyAdmin()) {
