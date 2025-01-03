@@ -1,7 +1,9 @@
 package com.example.xram.controler;
 
 import com.example.xram.model.Admin;
+import com.example.xram.model.ContactRequest;
 import com.example.xram.service.AdminService;
+import com.example.xram.service.ContactService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,11 +13,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
+    private final ContactService contactService;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -91,6 +96,14 @@ public class AdminController {
         if (session.getAttribute("ADMIN_ID") == null) {
             return "redirect:/admin/login";
         }
+
         return "admin/dashboard";
+    }
+
+    @GetMapping("/contacts")
+    public String showAllContacts(Model model) {
+        List<ContactRequest> contacts = contactService.findAll();
+        model.addAttribute("contacts", contacts);
+        return "admin/contacts";
     }
 }
