@@ -5,6 +5,8 @@ import com.example.xram.repository.SubscriberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class SubscriberService {
@@ -12,5 +14,8 @@ public class SubscriberService {
 
     public Subscriber save(Subscriber subscriber) {
         return subscriberRepository.save(subscriber);
+    }
+    public List<Subscriber> findAll() {
+        return subscriberRepository.findAll();
     }
 }

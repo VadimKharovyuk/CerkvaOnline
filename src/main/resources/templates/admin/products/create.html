@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <title>Добавление товара</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-900">
+<div class="container mx-auto px-6 py-8">
+  <div class="max-w-2xl mx-auto">
+    <div class="bg-gray-800 rounded-xl shadow-xl p-8">
+      <h2 class="text-2xl font-bold text-yellow-500 mb-6">Добавление нового товара</h2>
+
+      <form th:action="@{/admin/products}" method="post" enctype="multipart/form-data" class="space-y-6">
+        <!-- Выбор услуги -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Услуга</label>
+          <select name="service" required class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-gray-300 focus:border-yellow-500">
+            <option value="">Выберите услугу</option>
+            <option th:each="service : ${services}"
+                    th:value="${service.id}"
+                    th:text="${service.name}">
+            </option>
+          </select>
+        </div>
+
+        <!-- Название -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Название товара</label>
+          <input type="text" name="name" required
+                 class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-gray-300 focus:border-yellow-500"/>
+        </div>
+
+        <!-- Описание -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Описание</label>
+          <textarea name="description" rows="4" required
+                    class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-gray-300 focus:border-yellow-500"></textarea>
+        </div>
+
+        <!-- Цена -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Цена</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">₴</span>
+            <input type="number" name="price" step="0.01" required
+                   class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 pl-8 text-gray-300 focus:border-yellow-500"/>
+          </div>
+        </div>
+
+        <!-- Количество -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Количество</label>
+          <input type="number" name="quantity" min="0" required
+                 class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-gray-300 focus:border-yellow-500"/>
+        </div>
+
+        <!-- Изображение -->
+        <div>
+          <label class="block text-sm font-medium text-gray-300 mb-2">Изображение</label>
+          <input type="file" name="image" accept="image/*" required
+                 class="w-full bg-gray-700 border border-gray-600 rounded-lg p-3 text-gray-300 focus:border-yellow-500"/>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="flex justify-end space-x-4 mt-8">
+          <a href="/admin/services"
+             class="px-6 py-3 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600">
+            Отмена
+          </a>
+          <button type="submit"
+                  class="px-6 py-3 bg-yellow-500 text-gray-900 rounded-lg hover:bg-yellow-400">
+            Создать товар
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

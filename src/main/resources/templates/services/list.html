@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Услуги Храма</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900">
+<!-- Навигация -->
+<nav class="bg-gray-800 shadow-lg fixed w-full z-50">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center">
+        <i class="lucide-church text-yellow-500 text-2xl mr-2"></i>
+        <span class="text-xl font-bold text-yellow-500">Храм Online</span>
+      </a>
+      <div class="flex space-x-6">
+        <a href="/" class="text-gray-300 hover:text-yellow-500 transition-colors flex items-center">
+          <i class="lucide-home mr-1"></i>
+          Главная
+        </a>
+        <a href="/services" class="text-yellow-500 flex items-center">
+          <i class="lucide-book-open mr-1"></i>
+          Услуги
+        </a>
+        <a href="#contact" class="text-gray-300 hover:text-yellow-500 transition-colors flex items-center">
+          <i class="lucide-mail mr-1"></i>
+          Контакты
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Основной контент -->
+<div class="pt-20">
+  <div class="container mx-auto px-6 py-12">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-yellow-500 mb-4">Наши Услуги</h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">Выберите интересующую вас услугу для получения подробной информации</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div th:each="service : ${services}"
+           class="bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:transform hover:scale-105 transition-all duration-300">
+        <a th:href="@{/services/{id}(id=${service.id})}">
+          <div class="relative">
+            <div>
+              <h3 class="text-lg font-semibold text-gray-300 mb-4">Изображение услуги</h3>
+              <div class="bg-gray-700 rounded-lg overflow-hidden">
+                <img th:if="${service.imageData != null}"
+                     th:src="@{/admin/services/{id}/image(id=${service.id})}"
+                     class="w-full h-64 object-cover"/>
+                <div th:unless="${service.imageData != null}"
+                     class="w-full h-64 flex items-center justify-center">
+                  <i class="lucide-image text-gray-500 text-4xl"></i>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-2xl font-semibold text-yellow-500 mb-4 flex items-center">
+              <i class="lucide-book mr-2"></i>
+              <span th:text="${service.name}"></span>
+            </h3>
+            <p class="text-gray-300 mb-6" th:text="${service.shortDescription}"></p>
+            <button class="w-full bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center justify-center">
+              <i class="lucide-arrow-right mr-2"></i>
+              Подробнее
+            </button>
+            <a th:href="@{/admin/products/{id}/products(id=${service.id})}"
+               class="flex-1 bg-gray-700 text-yellow-500 px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors flex items-center justify-center">
+              <i class="lucide-shopping-bag mr-2"></i>
+              Товары
+            </a>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

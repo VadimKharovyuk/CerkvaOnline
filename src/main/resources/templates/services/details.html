@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <title th:text="${'Детали услуги - ' + service.name}">Детали услуги</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900">
+
+<div class="container mx-auto px-6 py-8">
+  <!-- Навигация -->
+  <nav class="mb-8 flex items-center space-x-2 text-gray-400">
+    <a href="/admin/dashboard" class="hover:text-yellow-500">Панель управления</a>
+    <i class="lucide-chevron-right text-sm"></i>
+    <a href="/admin/services" class="hover:text-yellow-500">Услуги</a>
+    <i class="lucide-chevron-right text-sm"></i>
+    <span class="text-yellow-500" th:text="${service.name}"></span>
+  </nav>
+
+  <!-- Основной контент -->
+  <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+    <!-- Заголовок и действия -->
+    <div class="p-6 border-b border-gray-700 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-yellow-500" th:text="${service.name}"></h1>
+    </div>
+
+    <!-- Информация об услуге -->
+    <div class="p-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Изображение -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-300 mb-4">Изображение услуги</h3>
+          <div class="bg-gray-700 rounded-lg overflow-hidden">
+            <img th:if="${service.imageData != null}"
+                 th:src="@{/admin/services/{id}/image(id=${service.id})}"
+                 class="w-full h-64 object-cover"/>
+            <div th:unless="${service.imageData != null}"
+                 class="w-full h-64 flex items-center justify-center">
+              <i class="lucide-image text-gray-500 text-4xl"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Детали -->
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-semibold text-gray-300 mb-2">Статус</h3>
+            <span th:if="${service.active}"
+                  class="px-4 py-2 bg-green-900/50 text-green-400 rounded-lg">
+                           <i class="lucide-check-circle mr-2"></i>
+                           Активна
+                       </span>
+            <span th:unless="${service.active}"
+                  class="px-4 py-2 bg-red-900/50 text-red-400 rounded-lg">
+                           <i class="lucide-x-circle mr-2"></i>
+                           Неактивна
+                       </span>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-300 mb-2">Дата создания</h3>
+            <p class="text-gray-400" th:text="${#temporals.format(service.createdAt, 'dd.MM.yyyy HH:mm')}"></p>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-gray-300 mb-2">Порядковый номер</h3>
+            <p class="text-gray-400" th:text="${service.orderIndex}"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Описания -->
+      <div class="mt-8 space-y-6">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-300 mb-2">Краткое описание</h3>
+          <p class="text-gray-400 bg-gray-700 p-4 rounded-lg" th:text="${service.shortDescription}"></p>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-gray-300 mb-2">Полное описание</h3>
+          <div class="text-gray-400 bg-gray-700 p-4 rounded-lg prose prose-invert max-w-none"
+               th:utext="${service.fullDescription}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Кнопка возврата -->
+  <div class="mt-8">
+    <a href="/admin/services"
+       class="inline-flex items-center text-gray-400 hover:text-yellow-500 transition-colors">
+      <i class="lucide-arrow-left mr-2"></i>
+      Вернуться к списку услуг
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
