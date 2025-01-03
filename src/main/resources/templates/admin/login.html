@@ -1,38 +1,115 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
 <head>
     <title>Вход в панель администратора</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
+    <style>
+        .floating-label {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .floating-label input {
+            width: 100%;
+            height: 60px;
+            padding: 20px 16px 0;
+            outline: none;
+            border: 1px solid #4B5563;
+            border-radius: 8px;
+            background: #1F2937;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .floating-label label {
+            position: absolute;
+            left: 16px;
+            top: 20px;
+            color: #9CA3AF;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+            transform: translateY(-10px);
+            font-size: 12px;
+            color: #FBBF24;
+        }
+        .floating-label input:focus {
+            border-color: #FBBF24;
+            box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
+        }
+        .login-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.2);
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-gray-100">
-<div class="min-h-screen flex items-center justify-center">
-    <div class="max-w-md w-full space-y-8 p-10 bg-gray-800 rounded-xl">
-        <div>
-            <h2 class="text-center text-3xl font-bold text-yellow-500">Вход в панель администратора</h2>
+<!-- Декоративный элемент -->
+<div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-600"></div>
+
+<div class="min-h-screen flex items-center justify-center px-4">
+    <div class="max-w-md w-full space-y-8 p-8 bg-gray-800 rounded-2xl shadow-2xl">
+        <div class="text-center space-y-6">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-700 mb-4">
+                <i class="lucide-church text-yellow-500 text-4xl"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-yellow-500">Вход в панель администратора</h2>
+            <p class="text-gray-400">Введите ваши учетные данные для входа</p>
         </div>
+
         <form class="mt-8 space-y-6" action="/admin/login" method="POST">
-            <div class="space-y-4">
-                <div>
-                    <label for="username" class="block text-sm font-medium text-gray-300">Имя пользователя</label>
-                    <input type="text" id="username" name="username" required
-                           class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+            <div class="space-y-6">
+                <div class="floating-label">
+                    <input type="text" id="username" name="username" placeholder=" " required
+                           class="text-gray-300"/>
+                    <label for="username">
+                        <i class="lucide-user text-sm mr-2"></i>Имя пользователя
+                    </label>
                 </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-300">Пароль</label>
-                    <input type="password" id="password" name="password" required
-                           class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-300">
+
+                <div class="floating-label">
+                    <input type="password" id="password" name="password" placeholder=" " required
+                           class="text-gray-300"/>
+                    <label for="password">
+                        <i class="lucide-lock text-sm mr-2"></i>Пароль
+                    </label>
                 </div>
             </div>
 
-            <div th:if="${error}" class="text-red-500 text-center text-sm">
-                <p th:text="${error}"></p>
+            <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember" class="w-4 h-4 rounded border-gray-600 bg-gray-700 text-yellow-500 focus:ring-yellow-500"/>
+                    <label for="remember" class="ml-2 text-gray-400">Запомнить меня</label>
+                </div>
+                <a href="#" class="text-yellow-500 hover:text-yellow-400 transition-colors">Забыли пароль?</a>
+            </div>
+
+            <div th:if="${error}" class="p-4 bg-red-900/50 border border-red-500 rounded-lg">
+                <p class="text-red-500 text-center text-sm" th:text="${error}"></p>
             </div>
 
             <button type="submit"
-                    class="w-full bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors text-lg font-semibold">
-                Войти
+                    class="login-button w-full bg-yellow-500 text-gray-900 px-6 py-4 rounded-lg hover:bg-yellow-400 transition-all text-lg font-semibold flex items-center justify-center gap-2">
+                <i class="lucide-log-in"></i>
+                Войти в систему
             </button>
         </form>
+
+        <div class="text-center text-gray-400 text-sm">
+            <p>© 2024 Храм Online. Все права защищены</p>
+        </div>
     </div>
 </div>
+
+<!-- Декоративные круги -->
+<div class="fixed top-20 left-20 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+<div class="fixed top-20 right-20 w-72 h-72 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
 </body>
 </html>
