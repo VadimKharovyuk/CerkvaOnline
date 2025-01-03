@@ -34,6 +34,7 @@
             <tbody class="divide-y divide-gray-700">
             <tr th:each="service : ${services}" class="text-gray-300 hover:bg-gray-700 transition-colors">
                 <td class="px-6 py-4">
+                    <a th:href="@{/admin/services/{id}(id=${service.id})}" class="block hover:opacity-75 transition-opacity">
                     <img th:if="${service.imageData != null}"
                          th:src="@{/admin/services/{id}/image(id=${service.id})}"
                          class="w-16 h-16 object-cover rounded-lg"/>
