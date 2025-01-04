@@ -49,12 +49,12 @@
           <div class="relative">
             <div>
               <h3 class="text-lg font-semibold text-gray-300 mb-4">Изображение услуги</h3>
-              <div class="bg-gray-700 rounded-lg overflow-hidden">
+              <div class="bg-gray-700 rounded-lg overflow-hidden h-80"> <!-- Установлена высота контейнера -->
                 <img th:if="${service.imageData != null}"
                      th:src="@{/admin/services/{id}/image(id=${service.id})}"
-                     class="w-full h-64 object-cover"/>
+                     class="w-full h-full object-contain" /> <!-- Изменены классы для изображения -->
                 <div th:unless="${service.imageData != null}"
-                     class="w-full h-64 flex items-center justify-center">
+                     class="w-full h-full flex items-center justify-center">
                   <i class="lucide-image text-gray-500 text-4xl"></i>
                 </div>
               </div>
@@ -72,7 +72,7 @@
               Подробнее
             </button>
             <a th:href="@{/products/{id}/products(id=${service.id})}"
-               class="flex-1 bg-gray-700 text-yellow-500 px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors flex items-center justify-center">
+               class="mt-4 flex-1 bg-gray-700 text-yellow-500 px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors flex items-center justify-center">
               <i class="lucide-shopping-bag mr-2"></i>
               Товары
             </a>

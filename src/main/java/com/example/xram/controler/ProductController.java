@@ -19,6 +19,6 @@ public class ProductController {
     public String getProductsForService(@PathVariable Long serviceId, Model model) {
         model.addAttribute("service", serviceService.getById(serviceId));
         model.addAttribute("products", productService.getProductsByService(serviceId));
-        return "admin/products/list";  // Изменен путь к представлению
+        return "admin/products/list";
     }
 }

@@ -17,12 +17,12 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div th:each="product : ${products}" class="bg-gray-800 rounded-xl overflow-hidden">
-      <div class="bg-gray-700 rounded-lg overflow-hidden">
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-80"> <!-- Увеличена высота контейнера -->
         <img th:if="${service.imageData != null}"
              th:src="@{/admin/services/{id}/image(id=${service.id})}"
-             class="w-full h-64 object-cover"/>
+             class="w-full h-full object-contain" /> <!-- Изменены классы для изображения -->
         <div th:unless="${service.imageData != null}"
-             class="w-full h-64 flex items-center justify-center">
+             class="w-full h-full flex items-center justify-center"> <!-- Обновлена высота -->
           <i class="lucide-image text-gray-500 text-4xl"></i>
         </div>
       </div>
@@ -39,7 +39,6 @@
             Заказать
           </button>
           <button class="flex-1 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-
           </button>
         </div>
       </div>
