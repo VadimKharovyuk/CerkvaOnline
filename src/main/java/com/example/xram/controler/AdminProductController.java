@@ -17,14 +17,6 @@ public class AdminProductController {
     private final ProductService productService;
     private final EServiceService serviceService;
 
-    @GetMapping("/{serviceId}/products")
-    public String getProductsForService(@PathVariable Long serviceId, Model model) {
-        model.addAttribute("service", serviceService.getById(serviceId));
-        model.addAttribute("products", productService.getProductsByService(serviceId));
-        return "admin/products/list";
-    }
-
-
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("product", new Product());
