@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Управление заказами</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900">
+<div class="container mx-auto px-6 py-8">
+  <h2 class="text-2xl font-bold text-yellow-500 mb-6 flex items-center">
+    <i class="lucide-shopping-bag mr-2"></i>
+    Управление заказами
+  </h2>
+
+  <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden">
+    <div class="p-6">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+          <tr class="text-yellow-500 border-b border-gray-700">
+            <th class="py-3 text-left">ID</th>
+            <th class="py-3 text-left">Клиент</th>
+            <th class="py-3 text-left">Телефон</th>
+            <th class="py-3 text-left">Сумма</th>
+            <th class="py-3 text-left">Статус</th>
+            <th class="py-3 text-left">Дата</th>
+            <th class="py-3 text-left">Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="order : ${orders}" class="border-b border-gray-700">
+            <td class="py-4 text-gray-300" th:text="${order.id}"></td>
+            <td class="py-4 text-gray-300" th:text="${order.customerName}"></td>
+            <td class="py-4 text-gray-300" th:text="${order.customerPhone}"></td>
+            <td class="py-4 text-yellow-500" th:text="${order.totalAmount + '₴'}"></td>
+            <td class="py-4">
+                                <span th:class="${'px-3 py-1 rounded-full text-sm ' +
+                                    (order.status == T(com.example.xram.enums.OrderStatus).NEW ? 'bg-blue-500 text-white' :
+                                     order.status == T(com.example.xram.enums.OrderStatus).PROCESSING ? 'bg-yellow-500 text-gray-900' :
+                                     order.status == T(com.example.xram.enums.OrderStatus).SHIPPED ? 'bg-green-500 text-white' :
+                                     order.status == T(com.example.xram.enums.OrderStatus).DELIVERED ? 'bg-green-700 text-white' :
+                                     'bg-red-500 text-white')}"
+                                      th:text="${order.status}">
+                                </span>
+            </td>
+            <td class="py-4 text-gray-300"
+                th:text="${#temporals.format(order.createdAt, 'dd.MM.yyyy HH:mm')}"></td>
+            <td class="py-4">
+              <div class="flex space-x-2">
+                <a th:href="@{'/admin/orders/' + ${order.id}}"
+                   class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  <i class="lucide-eye"></i>
+                </a>
+                <form th:action="@{'/admin/orders/' + ${order.id} + '/status'}"
+                      method="post" class="inline">
+                  <select name="status"
+                          class="bg-gray-700 border-gray-600 text-white rounded-lg px-2 py-1"
+                          onchange="this.form.submit()">
+                    <option value="NEW" th:selected="${order.status == T(com.example.xram.enums.OrderStatus).NEW}">Новый</option>
+                    <option value="PROCESSING" th:selected="${order.status == T(com.example.xram.enums.OrderStatus).PROCESSING}">В обработке</option>
+                    <option value="SHIPPED" th:selected="${order.status == T(com.example.xram.enums.OrderStatus).SHIPPED}">Отправлен</option>
+                    <option value="DELIVERED" th:selected="${order.status == T(com.example.xram.enums.OrderStatus).DELIVERED}">Доставлен</option>
+                    <option value="CANCELLED" th:selected="${order.status == T(com.example.xram.enums.OrderStatus).CANCELLED}">Отменён</option>
+                  </select>
+                </form>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

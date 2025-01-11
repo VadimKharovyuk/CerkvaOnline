@@ -33,4 +33,9 @@ public class ProductService {
         product.setImageType(imageFile.getContentType());
         return save(product);
     }
+
+    public Product findById(Long productId) {
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Товар не найден"));
+    }
 }

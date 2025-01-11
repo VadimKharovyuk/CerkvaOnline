@@ -1,3 +1,53 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" class="dark">-->
+<!--<head>-->
+<!--  <title>Товары услуги</title>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>-->
+<!--  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>-->
+<!--</head>-->
+<!--<body class="bg-gray-900">-->
+<!--<div class="container mx-auto px-6 py-8">-->
+<!--  <div class="flex justify-between items-center mb-6">-->
+<!--    <h2 class="text-2xl font-bold text-yellow-500" th:text="${'Товары - ' + service.name}"></h2>-->
+<!--    <a th:href="@{/admin/products/new(serviceId=${service.id})}"-->
+<!--       class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg hover:bg-yellow-400">-->
+<!--      Добавить товар-->
+<!--    </a>-->
+<!--  </div>-->
+
+<!--  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">-->
+<!--    <div th:each="product : ${products}" class="bg-gray-800 rounded-xl overflow-hidden">-->
+<!--      <div class="bg-gray-700 rounded-lg overflow-hidden h-80"> &lt;!&ndash; Увеличена высота контейнера &ndash;&gt;-->
+<!--        <img th:if="${service.imageData != null}"-->
+<!--             th:src="@{/admin/services/{id}/image(id=${service.id})}"-->
+<!--             class="w-full h-full object-contain" /> &lt;!&ndash; Изменены классы для изображения &ndash;&gt;-->
+<!--        <div th:unless="${service.imageData != null}"-->
+<!--             class="w-full h-full flex items-center justify-center"> &lt;!&ndash; Обновлена высота &ndash;&gt;-->
+<!--          <i class="lucide-image text-gray-500 text-4xl"></i>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="p-4">-->
+<!--        <h3 class="text-xl font-semibold text-yellow-500" th:text="${product.name}"></h3>-->
+<!--        <p class="text-gray-400 mt-2" th:text="${product.description}"></p>-->
+<!--        <div class="mt-4 flex justify-between items-center">-->
+<!--          <span class="text-2xl text-white" th:text="${product.price + '₴'}"></span>-->
+<!--          <span class="text-gray-400" th:text="${'В наличии: ' + product.quantity}"></span>-->
+<!--        </div>-->
+<!--        <div class="mt-4 flex space-x-2">-->
+<!--          <button class="flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">-->
+<!--            Заказать-->
+<!--          </button>-->
+<!--          <button class="flex-1 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="dark">
 <head>
@@ -17,12 +67,12 @@
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <div th:each="product : ${products}" class="bg-gray-800 rounded-xl overflow-hidden">
-      <div class="bg-gray-700 rounded-lg overflow-hidden h-80"> <!-- Увеличена высота контейнера -->
+      <div class="bg-gray-700 rounded-lg overflow-hidden h-80">
         <img th:if="${service.imageData != null}"
              th:src="@{/admin/services/{id}/image(id=${service.id})}"
-             class="w-full h-full object-contain" /> <!-- Изменены классы для изображения -->
+             class="w-full h-full object-contain" />
         <div th:unless="${service.imageData != null}"
-             class="w-full h-full flex items-center justify-center"> <!-- Обновлена высота -->
+             class="w-full h-full flex items-center justify-center">
           <i class="lucide-image text-gray-500 text-4xl"></i>
         </div>
       </div>
@@ -35,10 +85,16 @@
           <span class="text-gray-400" th:text="${'В наличии: ' + product.quantity}"></span>
         </div>
         <div class="mt-4 flex space-x-2">
-          <button class="flex-1 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-            Заказать
-          </button>
-          <button class="flex-1 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+          <!-- Форма добавления в корзину -->
+          <form th:action="@{'/cart/add/' + ${product.id}}" method="post" class="flex-1">
+            <button type="submit"
+                    class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">
+              Добавить в корзину
+            </button>
+          </form>
+          <!-- Если вам нужна вторая кнопка, оставьте её здесь -->
+          <button class="flex-1 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-300">
+            <!-- Ваш текст для второй кнопки -->
           </button>
         </div>
       </div>

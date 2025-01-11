@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Заказ оформлен</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900">
+<div class="container mx-auto px-6 py-8">
+  <div class="bg-gray-800 rounded-xl p-8 max-w-2xl mx-auto text-center">
+    <i class="lucide-check-circle text-green-500 text-6xl mb-4"></i>
+    <h2 class="text-2xl font-bold text-yellow-500 mb-4">Заказ успешно оформлен!</h2>
+    <p class="text-gray-300 mb-6">Номер вашего заказа: <span class="text-yellow-500" th:text="${orderId}"></span></p>
+    <p class="text-gray-400 mb-8">Мы свяжемся с вами в ближайшее время для подтверждения заказа.</p>
+
+    <div class="flex justify-center space-x-4">
+      <a href="/" class="bg-gray-700 text-yellow-500 px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors flex items-center">
+        <i class="lucide-home mr-2"></i>
+        На главную
+      </a>
+      <a href="/services" class="bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors flex items-center">
+        <i class="lucide-shopping-bag mr-2"></i>
+        Продолжить покупки
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
