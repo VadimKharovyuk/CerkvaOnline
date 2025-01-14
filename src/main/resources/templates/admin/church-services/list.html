@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Управление службами</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/lucide-icons@0.263.1/font/lucide-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900">
+<div class="container mx-auto px-6 py-8">
+  <!-- Заголовок и кнопка добавления -->
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-yellow-500">Управление службами</h2>
+    <a href="/admin/church-services/new"
+       class="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors flex items-center gap-2">
+      <i class="lucide-plus"></i>
+      Добавить службу
+    </a>
+  </div>
+
+  <!-- Уведомления об успехе/ошибке -->
+  <div th:if="${success}" class="bg-green-500 text-white p-4 rounded-lg mb-6">
+    <p th:text="${success}"></p>
+  </div>
+  <div th:if="${error}" class="bg-red-500 text-white p-4 rounded-lg mb-6">
+    <p th:text="${error}"></p>
+  </div>
+
+  <!-- Таблица служб -->
+  <div class="bg-gray-800 rounded-xl overflow-hidden shadow-xl">
+    <div class="p-6">
+      <div th:if="${#lists.isEmpty(services)}" class="text-gray-400 text-center py-8">
+        Службы не найдены
+      </div>
+
+      <div th:unless="${#lists.isEmpty(services)}" class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+          <tr class="text-yellow-500 border-b border-gray-700">
+            <th class="py-3 text-left">Название</th>
+            <th class="py-3 text-left">Дата</th>
+            <th class="py-3 text-left">Время</th>
+            <th class="py-3 text-left">Священник</th>
+            <th class="py-3 text-left">Статус</th>
+            <th class="py-3 text-center">Действия</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="service : ${services}" class="border-b border-gray-700">
+            <td class="py-4 text-gray-300" th:text="${service.name}"></td>
+            <td class="py-4 text-gray-300"
+                th:text="${#temporals.format(service.startTime, 'dd.MM.yyyy')}"></td>
+            <td class="py-4 text-gray-300">
+              <span th:text="${#temporals.format(service.startTime, 'HH:mm')}"></span>
+              -
+              <span th:text="${#temporals.format(service.endTime, 'HH:mm')}"></span>
+            </td>
+            <td class="py-4 text-gray-300" th:text="${service.priestName}"></td>
+            <td class="py-4">
+                                <span class="px-3 py-1 rounded-full text-sm"
+                                      th:classappend="${service.active ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}"
+                                      th:text="${service.active ? 'Активна' : 'Отменена'}">
+                                </span>
+            </td>
+            <td class="py-4">
+              <div class="flex justify-center space-x-2">
+                <!-- Кнопка редактирования -->
+                <a th:href="@{'/admin/church-services/edit/' + ${service.id}}"
+                   class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors">
+                  <i class="lucide-edit-2 text-sm"></i>
+                </a>
+                <!-- Кнопка удаления -->
+                <form th:action="@{'/admin/church-services/delete/' + ${service.id}}"
+                      method="post"
+                      class="inline"
+                      onsubmit="return confirm('Вы уверены, что хотите удалить эту службу?')">
+                  <button type="submit"
+                          class="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors">
+                    <i class="lucide-trash-2 text-sm"></i>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+</body>
+</html>

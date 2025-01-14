@@ -446,9 +446,28 @@
 
     let currentDate = new Date();
 
-    function updateCalendar() {
-      // Здесь будет логика обновления календаря
-      // После реализации бэкенда, здесь будем получать данные о службах
+    async function updateCalendar() {
+      const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+      const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+
+      // Форматируем даты для API
+      const start = firstDay.toISOString();
+      const end = lastDay.toISOString();
+
+      try {
+        const response = await fetch(`/church-services/by-date?start=${start}&end=${end}`);
+        const services = await response.json();
+
+        // Обновляем отображение месяца
+        const monthNames = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+          'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+        monthDisplay.textContent = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+
+        // Обновляем календарь с полученными службами
+        // Здесь нужно добавить логику отображения дней и маркировки дней со службами
+      } catch (error) {
+        console.error('Ошибка при загрузке служб:', error);
+      }
     }
 
     prevMonth.addEventListener('click', () => {

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <title>Управление службами</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-gray-900">
+<div class="container mx-auto px-6 py-8">
+  <h2 class="text-2xl font-bold text-yellow-500 mb-6">
+    <span th:text="${serviceDto.id == null ? 'Создание новой службы' : 'Редактирование службы'}"></span>
+  </h2>
+
+  <div class="bg-gray-800 rounded-xl p-6 max-w-2xl mx-auto">
+    <form th:action="${serviceDto.id == null ? '/admin/church-services' : '/admin/church-services/edit/' + serviceDto.id}"
+          th:object="${serviceDto}"
+          method="post"
+          class="space-y-6">
+
+      <div>
+        <label class="block text-yellow-500 mb-2">Название службы</label>
+        <input type="text"
+               th:field="*{name}"
+               class="w-full bg-gray-700 border-gray-600 text-white rounded-lg p-2.5"
+               required>
+      </div>
+
+      <div>
+        <label class="block text-yellow-500 mb-2">Время начала</label>
+        <input type="datetime-local"
+               th:field="*{startTime}"
+               class="w-full bg-gray-700 border-gray-600 text-white rounded-lg p-2.5"
+               required>
+      </div>
+
+      <div>
+        <label class="block text-yellow-500 mb-2">Время окончания</label>
+        <input type="datetime-local"
+               th:field="*{endTime}"
+               class="w-full bg-gray-700 border-gray-600 text-white rounded-lg p-2.5"
+               required>
+      </div>
+
+      <div>
+        <label class="block text-yellow-500 mb-2">Священник</label>
+        <input type="text"
+               th:field="*{priestName}"
+               class="w-full bg-gray-700 border-gray-600 text-white rounded-lg p-2.5"
+               required>
+      </div>
+
+      <div>
+        <label class="block text-yellow-500 mb-2">Описание</label>
+        <textarea th:field="*{description}"
+                  class="w-full bg-gray-700 border-gray-600 text-white rounded-lg p-2.5"
+                  rows="4"></textarea>
+      </div>
+
+      <div class="flex space-x-4">
+        <button type="submit"
+                class="flex-1 bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg hover:bg-yellow-400 transition-colors">
+          Сохранить
+        </button>
+        <a href="/admin/church-services"
+           class="flex-1 bg-gray-700 text-yellow-500 px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors text-center">
+          Отмена
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
